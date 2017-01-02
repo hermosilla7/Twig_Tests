@@ -24,7 +24,7 @@
         <div class="col-xs-12">
             <table class="table table-bordered">
                 <caption>
-                    <strong>{{ name }}</strong>
+                    <strong>{{ name }}</strong> - {{ type }} <em>({{ owner }})</em>
                 </caption>
                 <thead>
                     <tr>
@@ -35,12 +35,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
+                    {% for member in crew %}
+                        <tr class="
+                            {%  if member.status == 'Alive' %} success {% endif %}
+                            {%  if member.status == 'Dead' %} danger {% endif %}
+                        ">
+                        <td><strong>{{ member.name }}</strong></td>
+                        <td>{{ member.role }}</td>
+                        <td>{{ member.status }}</td>
+                        <td><em>{{ member.notes }}</em></td>
+                        </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
